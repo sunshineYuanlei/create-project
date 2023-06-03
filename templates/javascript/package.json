@@ -1,0 +1,45 @@
+{
+  "name": "vite-project",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "run-script-os",
+    "test:win64": "echo '你好，磊子！'",
+    "lint": "eslint --debug src/",
+    "lint:write": "eslint --debug src/ --fix",
+    "prettier": "prettier --write src/**/*.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.(js|jsx)": [
+      "npm run lint:write",
+      "npm run prettier",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "eslint-config-standard": "^17.1.0",
+    "pinia": "^2.0.11",
+    "typescript": "^4.6.2",
+    "vue": "^3.2.25"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.59.8",
+    "@typescript-eslint/parser": "^5.59.8",
+    "@vitejs/plugin-vue": "^2.2.0",
+    "chalk": "^4.1.0",
+    "eslint": "^8.41.0",
+    "eslint-plugin-vue": "^9.14.1",
+    "signale": "^1.4.0",
+    "update-notifier": "^4.1.0",
+    "vite": "^2.8.0",
+    "yargs-parser": "^21.1.1"
+  }
+}
