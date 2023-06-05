@@ -2,8 +2,6 @@
 
 ## Background
 
-Help you to quickly start a project based on [vite-vue3] or [vite-vue3-ts] or other tmplates in templates dir
+A universal scaffold, Help you to quickly start a project based on templates dir, or based on other online template
 
-Overall, it is a universal scaffold
-
-For more details, see package.json# test
+For more details, see package.json
