@@ -49,7 +49,7 @@ async function promptForMissingOptions(options) {
       type: "list",
       name: "template",
       message: "Please choose which project template to use",
-      choices: ["JavaScript", "TypeScript"],
+      choices: ["Vite-Vue3-JavaScript", "Vite-Vue3-TypeScript"],
       default: defaultTemplate,
     })
   }
