@@ -15,9 +15,11 @@ function parseArgumentsIntoOptions(rawArgs) {
       "--git": Boolean,
       "--yes": Boolean,
       "--install": Boolean,
+      "--remote": Boolean,
       "-g": "--git",
       "-y": "--yes",
       "-i": "--install",
+      "-r": "remote",
     },
     {
       argv: rawArgs.slice(2),
@@ -29,12 +31,15 @@ function parseArgumentsIntoOptions(rawArgs) {
     // 注意点
     template: args._[0],
     runInstall: args["--install"] || false,
+    isRemote: args["--remote"] || false,
   }
 }
 
 async function promptForMissingOptions(options) {
-  // 默认使用名为 JavaScript 的模板
-  const defaultTemplate = "JavaScript"
+  // 启用默认模板，根据options.isRemote参数确认默认模板值及启用不同选择项
+  const defaultTemplateLocal = "Vite-Vue3-JavaScript"
+  const defaultTemplateRomote = "webpack"
+  const defaultTemplate = !options.isRemote ? defaultTemplateLocal : defaultTemplateRomote
   // 使用默认模板则直接返回
   if (options.skipPrompts) {
     return {
@@ -49,7 +54,9 @@ async function promptForMissingOptions(options) {
       type: "list",
       name: "template",
       message: "Please choose which project template to use",
-      choices: ["Vite-Vue3-JavaScript", "Vite-Vue3-TypeScript"],
+      choices: !options.isRemote
+        ? ["Vite-Vue3-JavaScript", "Vite-Vue3-TypeScript"]
+        : ["webpack", "rollup"],
       default: defaultTemplate,
     })
   }
