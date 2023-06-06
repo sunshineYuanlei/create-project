@@ -66,23 +66,23 @@ export async function createProject(options) {
     targetDirectory: options.targetDirectory || process.cwd(),
   }
 
-  console.log("process.cwd>>>", process.cwd())
+  // console.log("process.cwd>>>", process.cwd())
   //  通过import.meta.url获取当前模块/main.js的url(import.meta中含有当前模块的所有内置信息)
-  const currentFileUrl = import.meta.url
-  console.log("currentFileUrl>>>", currentFileUrl)
-  const newUrl = new URL(currentFileUrl)
-  console.log("newUrl>>>", newUrl, path.resolve(__dirname))
-
-  const templateDir = path.resolve(
-    __dirname, // newUrl.pathname
-    "../templates",
-    options.template.toLowerCase()
-  )
-  options.templateDirectory = templateDir
-  console.log("templateDir>>>", templateDir)
+  // const currentFileUrl = import.meta.url
+  // console.log("currentFileUrl>>>", currentFileUrl)
+  // const newUrl = new URL(currentFileUrl)
+  // console.log("newUrl>>>", newUrl, path.resolve(__dirname))
   
   // 如果从本地下载模板, 检查模板是否存在
   if (!options.isRemote) {
+    const templateDir = path.resolve(
+      __dirname, // newUrl.pathname
+      "../templates",
+      options.template.toLowerCase()
+    )
+    options.templateDirectory = templateDir
+    console.log("templateDir>>>", templateDir)
+
     try {
       // 判断模板是否存在
       // fs.constants.R_OK -- 文件可被调用进程读取
@@ -90,7 +90,7 @@ export async function createProject(options) {
     } catch (err) {
       // 模板不存在
       console.error("%s Invalid template name", chalk.red.bold("ERROR"))
-      console.log("err>>>", err)
+      // console.log("err>>>", err)
       //  node.js中使用process.exit(integer)来中断进程, integer非0
       process.exit(1)
     }

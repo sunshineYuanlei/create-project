@@ -39,7 +39,9 @@ async function promptForMissingOptions(options) {
   // 启用默认模板，根据options.isRemote参数确认默认模板值及启用不同选择项
   const defaultTemplateLocal = "Vite-Vue3-JavaScript"
   const defaultTemplateRomote = "webpack"
-  const defaultTemplate = !options.isRemote ? defaultTemplateLocal : defaultTemplateRomote
+  const defaultTemplate = !options.isRemote
+    ? defaultTemplateLocal
+    : defaultTemplateRomote
   // 使用默认模板则直接返回
   if (options.skipPrompts) {
     return {
@@ -78,9 +80,9 @@ async function promptForMissingOptions(options) {
 }
 
 export async function cli(args) {
-  // 获取命令行配置
+  // 获取命令行配置选项/options
   let options = parseArgumentsIntoOptions(args)
-  // 交互式进一步获取选项
+  // 交互式进一步获取配置选项
   options = await promptForMissingOptions(options)
   // 下载模板
   await createProject(options)
