@@ -35,8 +35,5 @@
     "bin/",
     "src/",
     "templates/"
-  ],
-  "devDependencies": {
-    "webpack-cli": "^5.1.4"
-  }
+  ]
 }
